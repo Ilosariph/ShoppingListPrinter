@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  rtm-shopping-list-printer:
+    container_name: shopping-list
+    image: shopping-list
+    networks:
+      - proxy #required for my installation with caddy, you can expose the ports directly
+    environment:
+      LOG_LEVEL: 20 #Debug = 10, Info = 20, Warning = 30, Error = 40, Critical = 50
+      API_KEY: myApiKey123
+      SHARED_SECRET: mySharedSecret123
+      FROB: myFrob123 #The frob will be printed in the console after the first start with a valid api key and secret. Put that in here and restart.
+      AUTH_TOKEN: myAuthToken123 #This will be given to you after you restarted with a valid and authenticated frob. Put that in here and restart once more.
+      ACTIVE_LIST: 'Shopping list' #The name of your shopping list
+      LOG_SENSITIVE: 0 #If set to 1, sensitive data like the api key, frob or auth token might be printed to the console.
+
+networks:
+  proxy:
+    external: true
