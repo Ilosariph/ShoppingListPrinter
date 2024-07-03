@@ -1,0 +1,1 @@
+This project uses Remember the milk to create shopping lists you can edit. The items of the list are requested from a python webserver (I can't be bothered to create all the requests on the esp) and then given to the arduino (which requested it in the first place) to print it with a thermal printer, so even the biggest paper advocates can use digital shopping lists.
