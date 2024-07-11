@@ -23,11 +23,6 @@
     <button id="get_token" onclick="getToken()">Get the auth token</button>
 </div>
 <script>
-    async function sendRequest(url) {
-        let response = await fetch(url);
-        return await response.text();
-    }
-
     function buildUrl(baseUrl, argsMap) {
         argsMap.forEach((v, k) => baseUrl += k + "=" + v + "&");
         baseUrl += "api_sig=" + generateSignature(argsMap);
