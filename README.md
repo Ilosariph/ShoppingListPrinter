@@ -8,7 +8,7 @@ Now everyone can use a digital shopping list and the one "_I need a physical sho
 # Installation
 ## Webserver
 - Apply for an api key (at the time of writing you can do that at https://www.rememberthemilk.com/services/api/keys.rtm)
-- Use the html file in /authentication to get your frob and auth token from remember the milk once you got the api key
+- Use [the html file](authentication/index.html) to get your frob and auth token from remember the milk once you got the api key
 - Put all of your api credentials into the docker compose
 - You can change the shopping list name in the docker compose
 - Generate the password hash and insert that. See [generating the password hash](#generating-the-password-hash)
