@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -7,8 +9,7 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 users = {
-    "john": generate_password_hash("hello"),
-    "susan": generate_password_hash("bye")
+    os.environ.get('BASIC_AUTH_USERNAME', ''): generate_password_hash(os.environ.get('BASIC_AUTH_PASSWORD', '')),
 }
 
 
@@ -23,3 +24,7 @@ def verify_password(username, password):
 @auth.login_required
 def index():
     return rtm_helper.get_items_to_buy()
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
