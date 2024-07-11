@@ -193,7 +193,7 @@ def auth():
     token_response = get_token()
     # I don't know any case where this would work without authenticating, so this should always be true
     if has_error(token_response):
-        auth_url = build_url('https://www.rememberthemilk.com/services/auth/', append_default=False, api_key=api_key, perms='delete', frob=frob)
+        auth_url = build_url('https://www.rememberthemilk.com/services/auth/', append_default=False, api_key=api_key, perms='write', frob=frob)
         logger.info(f'Please authenticate at {auth_url}, and set the frob to "{frob}". Then restart the application.')
     if auth_token == '':
         auth_token = xmltodict.parse(token_response)['rsp']['auth']['token']
