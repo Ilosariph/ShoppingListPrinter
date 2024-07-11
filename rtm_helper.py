@@ -53,8 +53,6 @@ def build_url(base_url='https://www.rememberthemilk.com/services/rest/', append_
     for k, v in api_params.items():
         url = url + f'{k}={v}&'
 
-    url = url[:-1]
-
     if log_sensitive:
         logger.debug(f'URL after appending all params except the signature: {url}')
 
@@ -62,7 +60,7 @@ def build_url(base_url='https://www.rememberthemilk.com/services/rest/', append_
     secret_string = sharedSecret + ''.join(i + j for i, j in sorted_args)
     api_sig = hashlib.md5(secret_string.encode())
 
-    url = url + f'&api_sig={api_sig.hexdigest()}'
+    url = url + f'api_sig={api_sig.hexdigest()}'
 
     if log_sensitive:
         logger.debug(f'URL after appending all the params with the signature: {url}')
