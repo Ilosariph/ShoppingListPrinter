@@ -11,6 +11,8 @@ try:
     loglevel = int(os.environ['LOG_LEVEL'])
 except KeyError:
     loglevel = logging.INFO
+
+logging.info(f'loglevel is {loglevel}, name is {logging.getLevelName(loglevel)}')
 logger = logging.getLogger(__name__)
 logger.setLevel(loglevel)
 
@@ -27,10 +29,7 @@ timeline = None
 
 active_list_name = os.getenv('ACTIVE_LIST', '')
 
-try:
-    log_sensitive = int(os.environ['LOG_SENSITIVE']) == 1
-except KeyError:
-    log_sensitive = False
+log_sensitive = os.getenv('LOG_SENSITIVE', '0') == '1'
 
 
 def build_url(base_url='https://www.rememberthemilk.com/services/rest/', append_default=True, **api_params):
@@ -202,6 +201,9 @@ def auth():
 
 def get_items_to_buy():
     id = get_list_id_by_name(active_list_name)
+    if not id:
+        logger.warning('No list with this name was found')
+        return ''
     logger.debug(f'Getting items to buy for list {active_list_name} with id {id}')
     items = get_task_names(id)
     logger.debug(f'Found {items} in list {active_list_name}')

@@ -9,7 +9,7 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 users = {
-    os.environ.get('BASIC_AUTH_USERNAME', ''): os.environ.get('BASIC_AUTH_PASSWORD_HASH', generate_password_hash(os.environ.get('BASIC_AUTH_PASSWORD', '')))
+    os.getenv('BASIC_AUTH_USERNAME', ''): os.getenv('BASIC_AUTH_PASSWORD_HASH', generate_password_hash(os.getenv('BASIC_AUTH_PASSWORD', '')))
 }
 
 
