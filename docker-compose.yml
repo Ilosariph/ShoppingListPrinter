@@ -16,4 +16,5 @@ services:
       BASIC_AUTH_USERNAME: "username" #The username for the http basic auth
       BASIC_AUTH_PASSWORD_HASH: "scrypt:32768:8:1$2aRMNwwbRB4MhCEb$f6e865a3213e188ee06866e060f0671bf65704d3fb7f41d901088972027f3038707a86c4f1c95f985e8944787290600d6505c16597b9675d6aeaf342f269f45a" #scrypt password hash for "hello". See the readme for instructions on how to get the hash
       BASIC_AUTH_PASSWORD: "password" #The password for the http basic auth. Use the password hash instead, this is not all that secure!
+      CREATE_LIST: 1 #If set to 1, the list will be created if it doesn't exist.
     restart: unless-stopped
